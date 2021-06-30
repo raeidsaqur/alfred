@@ -2,6 +2,7 @@ import os
 import sys
 sys.path.append(os.path.join(os.environ['ALFRED_ROOT']))
 sys.path.append(os.path.join(os.environ['ALFRED_ROOT'], 'gen'))
+sys.path.append(os.path.join(os.environ['ALFRED_ROOT'], 'models'))
 import json
 import revtok
 import torch
@@ -218,6 +219,11 @@ if __name__ == '__main__':
     parser.add_argument('--splits', help='json file containing train/dev/test splits', default='splits/oct21.json')
     parser.add_argument('--pp_folder', help='folder name for preprocessed data', default='pp')
     # parser.add_argument('--preprocess', help='store preprocessed data to json files', action='store_true')
+
+    parser.add_argument('--pframe', help='image pixel size (assuming square shape eg: 300x300)', default=300, type=int)
+    parser.add_argument('--fast_epoch', help='fast epoch during debugging', action='store_true')
+    parser.add_argument('--use_templated_goals', help='use templated goals instead of human-annotated goal descriptions (only available for train set)', action='store_true')
+
 
     # args and init
     args = parser.parse_args()
