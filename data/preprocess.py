@@ -222,6 +222,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--pframe', help='image pixel size (assuming square shape eg: 300x300)', default=300, type=int)
     parser.add_argument('--fast_epoch', help='fast epoch during debugging', action='store_true')
+    parser.add_argument('--dout', help='where to save model', default='exp/model:{model}')
     parser.add_argument('--use_templated_goals', help='use templated goals instead of human-annotated goal descriptions (only available for train set)', action='store_true')
 
 

@@ -1,5 +1,8 @@
 data/full_2.1.0
 data/json_feat_2.1.0
-
+data/json_2.1.0
+exp
+slurm
+scripts
 */__pycache__
 __pycache__/
