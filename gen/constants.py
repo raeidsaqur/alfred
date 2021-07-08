@@ -73,7 +73,7 @@ SAVE_FRAME_BEFORE_AND_AFTER_COUNTS = {
 }
 
 # FPS
-VIDEO_FRAME_RATE = 5
+VIDEO_FRAME_RATE = 30   #default 5
 
 ########################################################################################################################
 # Data & Storage
@@ -85,7 +85,7 @@ data_dict = OrderedDict()  # dictionary for storing trajectory data to be dumped
 # Unity Hyperparameters
 
 BUILD_PATH = None
-X_DISPLAY = '0'
+X_DISPLAY = '1'     # default: '0'
 
 AGENT_STEP_SIZE = 0.25
 AGENT_HORIZON_ADJ = 15
