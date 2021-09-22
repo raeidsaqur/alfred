@@ -24,6 +24,9 @@ import time
 
 # Agent can freely spin in place at either of the end angles, set to True to demonstrate
 SPIN = False
+# Set to True to print shortened version of last event metadata (evidently,
+# LookUp is translated into TeleportFull at some point)
+PRINT_EVENT = False
 
 def setup_scene(env, traj_data, r_idx, reward_type='dense'):
     '''
@@ -104,10 +107,20 @@ if __name__ == "__main__":
 
     # Try to look up back to original position
     print("look up")
-    t_success, _, _, err, _ = env.va_interact("LookUp_15", interact_mask=None, smooth_nav=False, debug=False)
+    t_success, new_event, _, err, _ = env.va_interact("LookUp_15", interact_mask=None, smooth_nav=False, debug=False)
     print(t_success)
     print(err, flush=True)
 
+    if PRINT_EVENT:
+        print("\n\n**************\n\n")
+        if not new_event.metadata['lastActionSuccess']:
+            import copy
+            tmp = copy.deepcopy(new_event.metadata)
+            del tmp['colors']
+            del tmp['objects']
+            del tmp["colorBounds"]
+            import json
+            print(json.dumps(tmp, indent=4))
 
     env.stop()
 
