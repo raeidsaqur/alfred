@@ -15,6 +15,8 @@ NOTE: Had to modify env/tasks.py to fully specify "from gen.graph"
 
       Had to modify gen/graph/graph_obj.py to fully specify "import gen.constants as constants"
       rather than "import constants"
+
+      Had to modify X_DISPLAY = '1' rather than '0' in gen.constants
 """
 
 import json
