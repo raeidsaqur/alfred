@@ -146,6 +146,8 @@ class Module(Base):
                 seqs = [torch.tensor(vv, device=device) for vv in v]
                 pad_seq = pad_sequence(seqs, batch_first=True, padding_value=self.pad)
                 seq_lengths = np.array(list(map(len, v)))
+                #TODO: throws bad index error in the position embeddings for p2p problem data
+                # See: https://discuss.pytorch.org/t/solved-assertion-srcindex-srcselectdimsize-failed-on-gpu-for-torch-cat/1804/20
                 embed_seq = self.emb_word(pad_seq)
                 packed_input = pack_padded_sequence(embed_seq, seq_lengths, batch_first=True, enforce_sorted=False)
                 feat[k] = packed_input

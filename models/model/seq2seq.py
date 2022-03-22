@@ -26,7 +26,9 @@ class Module(nn.Module):
         self.vocab = vocab
 
         # emb modules
-        self.emb_word = nn.Embedding(len(vocab['word']), args.demb)
+        num_vocab_embeddings = len(vocab['word'])       # it should be 2360 for full split (oct21.json)
+        ## Debug: filtered task type p2p (i.e. pick and place 2 objects)
+        self.emb_word = nn.Embedding(num_vocab_embeddings, args.demb)
         self.emb_action_low = nn.Embedding(len(vocab['action_low']), args.demb)
 
         # end tokens

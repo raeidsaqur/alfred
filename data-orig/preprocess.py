@@ -212,34 +212,34 @@ class Dataset(object):
         del conv['num']['action_low'][-2]
         conv['num']['action_low'][-1][0]['high_idx'] = len(conv['plan']['high_pddl']) - 1
 
-# if __name__ == '__main__':
-#     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
-#     # settings
-#     parser.add_argument('--data', help='dataset folder', default='data/json_feat_2.1.0')
-#     parser.add_argument('--splits', help='json file containing train/dev/test splits', default='splits/oct21.json')
-#     parser.add_argument('--pp_folder', help='folder name for preprocessed data', default='pp')
-#     # parser.add_argument('--preprocess', help='store preprocessed data to json files', action='store_true')
-#
-#     parser.add_argument('--pframe', help='image pixel size (assuming square shape eg: 300x300)', default=300, type=int)
-#     parser.add_argument('--fast_epoch', help='fast epoch during debugging', action='store_true')
-#     parser.add_argument('--dout', help='where to save model', default='exp/model:{model}')
-#     parser.add_argument('--use_templated_goals', help='use templated goals instead of human-annotated goal descriptions (only available for train set)', action='store_true')
-#
-#
-#     # args and init
-#     args = parser.parse_args()
-#     is_processed = os.path.exists(os.path.join(args.data, "%s.vocab" % args.pp_folder))
-#     if is_processed:
-#         raise Exception("Dataset is already processed - aborting")
-#
-#     # load train/valid/tests splits
-#     with open(args.splits) as f:
-#         splits = json.load(f)
-#         pprint.pprint({k: len(v) for k, v in splits.items()})
-#
-#     # preprocess and save
-#     print(
-#         "\nPreprocessing dataset and saving to %s folders ... This will take a while. Do this once as required." % args.pp_folder)
-#     dataset = Dataset(args, None)
-#     dataset.preprocess_splits(splits)
-#     # vocab = torch.load(os.path.join(args.dout, "%s.vocab" % args.pp_folder))
+if __name__ == '__main__':
+    parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
+    # settings
+    parser.add_argument('--data', help='dataset folder', default='data/json_feat_2.1.0')
+    parser.add_argument('--splits', help='json file containing train/dev/test splits', default='splits/oct21.json')
+    parser.add_argument('--pp_folder', help='folder name for preprocessed data', default='pp')
+    # parser.add_argument('--preprocess', help='store preprocessed data to json files', action='store_true')
+
+    parser.add_argument('--pframe', help='image pixel size (assuming square shape eg: 300x300)', default=300, type=int)
+    parser.add_argument('--fast_epoch', help='fast epoch during debugging', action='store_true')
+    parser.add_argument('--dout', help='where to save model', default='exp/model:{model}')
+    parser.add_argument('--use_templated_goals', help='use templated goals instead of human-annotated goal descriptions (only available for train set)', action='store_true')
+
+
+    # args and init
+    args = parser.parse_args()
+    is_processed = os.path.exists(os.path.join(args.data, "%s.vocab" % args.pp_folder))
+    if is_processed:
+        raise Exception("Dataset is already processed - aborting")
+
+    # load train/valid/tests splits
+    with open(args.splits) as f:
+        splits = json.load(f)
+        pprint.pprint({k: len(v) for k, v in splits.items()})
+
+    # preprocess and save
+    print(
+        "\nPreprocessing dataset and saving to %s folders ... This will take a while. Do this once as required." % args.pp_folder)
+    dataset = Dataset(args, None)
+    dataset.preprocess_splits(splits)
+    # vocab = torch.load(os.path.join(args.dout, "%s.vocab" % args.pp_folder))

@@ -68,7 +68,8 @@ if __name__ == '__main__':
     torch.manual_seed(args.seed)
 
     # check if dataset has been preprocessed
-    if not os.path.exists(os.path.join(args.data, "%s.vocab" % args.pp_folder)) and not args.preprocess:
+    pp_folder_path = os.path.join(args.data, "%s.vocab" % args.pp_folder)
+    if not os.path.exists(pp_folder_path) and not args.preprocess:
         raise Exception("Dataset not processed; run with --preprocess")
 
     # make output dir
@@ -86,9 +87,11 @@ if __name__ == '__main__':
         print("\nPreprocessing dataset and saving to %s folders ... This will take a while. Do this once as required." % args.pp_folder)
         dataset = Dataset(args, None)
         dataset.preprocess_splits(splits)
-        vocab = torch.load(os.path.join(args.dout, "%s.vocab" % args.pp_folder))
+        path = os.path.join(args.dout, "%s.vocab" % args.pp_folder)
+        vocab = torch.load(path)
     else:
-        vocab = torch.load(os.path.join(args.data, "%s.vocab" % args.pp_folder))
+        path = os.path.join(args.data, "%s.vocab" % args.pp_folder)
+        vocab = torch.load(path)
 
     # load model
     M = import_module('model.{}'.format(args.model))

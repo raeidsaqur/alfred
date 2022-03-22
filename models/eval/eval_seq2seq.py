@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     # settings
     parser.add_argument('--splits', type=str, default="data/splits/oct21.json")
-    parser.add_argument('--data', type=str, default="data/json_2.1.0")
+    parser.add_argument('--data', type=str, default="data/json_feat_2.1.0")
     parser.add_argument('--reward_config', default='models/config/rewards.json')
     parser.add_argument('--eval_split', type=str, default='valid_seen', choices=['train', 'valid_seen', 'valid_unseen'])
     parser.add_argument('--model_path', type=str, default="model.pth")
