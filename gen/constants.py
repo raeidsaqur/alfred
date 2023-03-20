@@ -84,7 +84,11 @@ data_dict = OrderedDict()  # dictionary for storing trajectory data to be dumped
 ########################################################################################################################
 # Unity Hyperparameters
 
-BUILD_PATH = None
+# BUILD_PATH = None # MAR 20 2023. dEFAULT path
+AI2THOR_PATH=f"/media/ssd2/unity/projects/ai2thor-dev-2.1.0/ai2thor"
+LOCAL_EXEC_PATH=f"{AI2THOR_PATH}/unity/builds/all_kitchens_and_modification.x86_64"
+BUILD_PATH = LOCAL_EXEC_PATH
+
 X_DISPLAY = '1'     # default: '0'
 
 AGENT_STEP_SIZE = 0.25
