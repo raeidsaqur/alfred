@@ -1,4 +1,6 @@
 import json
+import os
+import argparse
 
 def replay_json(env, json_file):
     # load json data
@@ -50,3 +52,21 @@ def replay_json(env, json_file):
         steps_taken += 1
 
     return steps_taken
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--json_file', type=str, required=True)
+    parser.add_argument('--splits', type=str, default="data/splits/oct21.json")
+    parser.add_argument('--data', type=str, default="data/json_feat_2.1.0")
+    parser.add_argument('--use_templated_goals',
+                        help='use templated goals instead of human-annotated goal descriptions (only available for train set)',
+                        action='store_true')
+
+    args = parser.parse_args()
+
+    from env.thor_env import ThorEnv
+    print(f"Replaying traj_data json file:{args.json_file}")
+    env = ThorEnv()
+    replay_json(env, args.json_file)
+
+
